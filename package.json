@@ -1,0 +1,10 @@
+{
+  "name": "RocketSeat_NLW_Together",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "DuStein <steindu@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
