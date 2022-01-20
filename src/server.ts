@@ -1,13 +1,13 @@
+import "reflect-metadata";
 import express from "express";
+import { router } from "./routes";
+import "./database";
 
 const app = express();
 
-app.get("/", (req, res) => {
-    res.json({message: "OK GET raiz"})
-})
+app.use(express.json());
 
-app.get("/go", (req, res) => {
-    res.json({pasta:"GO"})
-})
+app.use(router);
+
 
 app.listen(3030, ()=> console.log("SERVIDOR ativo!"))
