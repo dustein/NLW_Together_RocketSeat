@@ -15,9 +15,9 @@ class CreateUserService {
             throw new Error("Incorrect e-mail !")
         }
 
-        const userAlreadyExists = await usersRepository.findOne(
-//
-        )
+        const userAlreadyExists = await usersRepository.findOne({
+            email
+        });
 
         if (userAlreadyExists) {
             throw new Error("User exists already !");
@@ -33,7 +33,6 @@ class CreateUserService {
 
         return user;
     }
-
 }
 
-export { CreateUserService }
+export { CreateUserService };
