@@ -8,8 +8,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use(router);
-
 app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {
     if(err instanceof Error) {
@@ -24,6 +22,9 @@ app.use(
     })
     }
 );
+
+app.use(router);
+
 
 
 app.listen(3030, ()=> console.log("SERVIDOR ativo!"))
