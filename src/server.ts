@@ -12,13 +12,13 @@ app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {
     if(err instanceof Error) {
         return response.status(400).json({
-            error: err.message,
+            error: err.message
         })
     } 
 
     return response.status(500).json({
         status: "error",
-        message: "Internal Server Error",
+        message: "Internal Server Error"
     })
     }
 );
@@ -27,4 +27,4 @@ app.use(router);
 
 
 
-app.listen(3030, ()=> console.log("SERVIDOR ativo!"))
+app.listen(3030, ()=> console.log("SERVIDOR ativo !><!><!"))
