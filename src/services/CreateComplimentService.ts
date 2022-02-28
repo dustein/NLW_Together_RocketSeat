@@ -1,3 +1,4 @@
+import { response } from "express";
 import { getCustomRepository, getRepository } from "typeorm";
 import { ComplimentsRepositories } from "../repositories/ComplimentsRepositories";
 import { UsersRepositories } from "../repositories/UsersRepositories";
@@ -9,10 +10,10 @@ interface IComplimentRequest {
     message: string;
 }
 
-class CreateComlimentService {
+class CreateComplimentService {
     async execute({tag_id, user_receiver, user_sender, message}: IComplimentRequest) {
 
-        const complimentRepositories = getCustomRepository(ComplimentsRepositories);
+        const complimentsRepositories = getCustomRepository(ComplimentsRepositories);
         const usersRepositories = getCustomRepository(UsersRepositories);
 
         const userReceiverExists = await usersRepositories.findOne(user_receiver);
@@ -33,8 +34,9 @@ class CreateComlimentService {
 
         await complimentsRepositories.save(compliment);
 
+        return compliment;
 
     }
 }
 
-export { CreateComlimentService };
+export { CreateComplimentService };
