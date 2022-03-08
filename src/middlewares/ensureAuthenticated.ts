@@ -2,6 +2,10 @@ import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 import { CustomRepositoryCannotInheritRepositoryError } from "typeorm";
 
+interface IPayload {
+    sub: string;
+}
+
 function ensureAuthenticated (request: Request, response: Response, next: NextFunction) {
 
     //receber o token
@@ -15,7 +19,13 @@ function ensureAuthenticated (request: Request, response: Response, next: NextFu
     const [, token] = authToken.split(" ");
     //verificar se token é válido, se não expirou, etc
     try {
-        const decode = verify(token , "88181fb72ce6bcaea828f57b3db3df19");
+        // const decode = verify(token , "88181fb72ce6bcaea828f57b3db3df19");
+        const { sub } = verify(
+            token,
+            "88181fb72ce6bcaea828f57b3db3df19"
+            ) as IPayload;
+        
+        request.user_id = sub;
         
         return next();
     } catch (err) {

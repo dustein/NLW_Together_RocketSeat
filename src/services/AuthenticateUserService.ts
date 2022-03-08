@@ -19,15 +19,17 @@ class AuthenticateUserService {
         });
 
         if(!user) {
-            throw new Error("Email ou Password incorreto.");
+            throw new Error("Email ou Password incorreto ! ! !");
         }
 
         //verificar se a senha esta correta
         const passwordMatch = await compare(password, user.password);
 
-        if(!user) {
-            throw new Error("Email ou Password incorreto.");
+        if(!passwordMatch) {
+            throw new Error("Email ou Password incorreto !");
         }
+
+        
 
         //gerar token
         const token = sign({
@@ -39,6 +41,8 @@ class AuthenticateUserService {
             expiresIn: "1 day"
         }
         );
+
+        return token;
     }
 
 };
