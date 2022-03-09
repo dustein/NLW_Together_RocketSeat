@@ -1,5 +1,7 @@
+import { Exclude } from "class-transformer";
 import {Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn} from "typeorm";
 import { v4 as uuid } from "uuid";
+
 
 @Entity("users")
 export class User {
@@ -12,6 +14,8 @@ export class User {
     @Column()
     email: string;
 
+    //para nao exibir a senha - usando a biblioteca class-transformer, usar o Exclude
+    @Exclude()
     @Column()
     password: string;
     
